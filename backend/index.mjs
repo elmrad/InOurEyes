@@ -81,14 +81,15 @@ function stageForAge(age){
     8:"Year 4 / Key Stage 2",
     9:"Year 5 / Key Stage 2",
     10:"Year 6 / Key Stage 2",
-    11:"Year 7 / Key Stage 3"
+    11:"Year 7 / Key Stage 3",
+    16:"Year 12 / Post-16 generic British curriculum"
   }[age];
 }
 
 function validate(body){
   if(!Array.isArray(body.images) || body.images.length!==1) return "Upload exactly one picture.";
   if(typeof body.images[0]!=="string" || !body.images[0].startsWith("data:image/") || body.images[0].length>2_400_000) return "The picture must be a valid compressed image.";
-  if(!Number.isInteger(body.age) || body.age<4 || body.age>11) return "Choose an age from 4 to 11.";
+  if(!Number.isInteger(body.age) || ![4,5,6,7,8,9,10,11,16].includes(body.age)) return "Choose an age from 4 to 11, or Year 12.";
   if(body.curriculum!=="British") return "The MVP currently supports the British curriculum.";
   return null;
 }
@@ -107,7 +108,7 @@ export const handler=async event=>{
 
 The photograph is the primary evidence. Inspect it carefully and report only what is genuinely visible. Consider age-appropriate possibilities including, where evidenced: recognising and naming colours; counting visible items; comparing bigger/smaller, more/fewer, longer/shorter or near/far; matching, sorting and classifying; position, direction and proximity; shapes and patterns; addition or subtraction using visible quantities; language and description; living things, materials, forces, place, art and observation. These are possibilities, not a checklist. Do not force a concept that the image does not support.
 
-Return only curriculum outcomes appropriate to the selected age and stage. For age 4, prioritise the current EYFS statutory framework and Development Matters only where appropriate. For school ages, prioritise the National Curriculum in England programme of study for the correct year/key stage. Verify wording with official GOV.UK or Department for Education sources using web search. Do not invent curriculum codes. Paraphrase faithfully when exact wording is not needed.
+Return only curriculum outcomes appropriate to the selected age and stage. For age 4, prioritise the current EYFS statutory framework and Development Matters only where appropriate. For school ages through Year 7, prioritise the National Curriculum in England programme of study for the correct year/key stage. For Year 12, use a generic post-16 British curriculum lens: critical thinking, evaluation of evidence, quantitative reasoning, communication, problem-solving, research, ethics and sustainability. Do not pretend that a generic Year 12 outcome is an A-Level subject specification. Verify wording with official GOV.UK, Department for Education or reputable UK awarding-body sources using web search. Do not invent curriculum codes. Paraphrase faithfully when exact wording is not needed.
 
 For every outcome, explain:
 1. what a child of this age might naturally notice;
