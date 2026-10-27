@@ -1,0 +1,121 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="description" content="InOurEyes turns any photograph into visible-evidence curriculum opportunities.">
+  <title>InOurEyes — See learning everywhere</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="#" aria-label="InOurEyes home">
+      <span class="logo"><i></i><i></i><i></i></span>
+      <span><strong>InOurEyes</strong><small>See learning everywhere</small></span>
+    </a>
+    <button class="ghost-button" id="authButton" type="button">Sign in</button>
+  </header>
+
+  <main>
+    <section class="hero">
+      <span class="eyebrow">THE WORLD, THROUGH A CHILD'S EYES</span>
+      <h1>Upload a picture.<br><em>Discover the learning inside it.</em></h1>
+      <p>InOurEyes examines what is genuinely visible, views it at the child's developmental level and connects it to British curriculum outcomes.</p>
+      <div class="flow" aria-label="How it works">
+        <span>1 · Add a picture</span><i>→</i><span>2 · Choose an age</span><i>→</i><span>3 · Scroll through outcomes</span>
+      </div>
+    </section>
+
+    <section class="workspace">
+      <div class="setup-card">
+        <div class="section-title">
+          <span class="step">01</span>
+          <div><h2>Choose the lens</h2><p>The selected age determines how the image is interpreted.</p></div>
+        </div>
+
+        <div class="fields">
+          <label>
+            <span>Child's age</span>
+            <select id="age">
+              <option value="4">4 years old · Reception / EYFS</option>
+              <option value="5">5 years old · Year 1</option>
+              <option value="6">6 years old · Year 2</option>
+              <option value="7">7 years old · Year 3</option>
+              <option value="8">8 years old · Year 4</option>
+              <option value="9">9 years old · Year 5</option>
+              <option value="10">10 years old · Year 6</option>
+              <option value="11">11 years old · Year 7</option>
+            </select>
+          </label>
+          <label>
+            <span>Curriculum</span>
+            <select id="curriculum" disabled>
+              <option value="British">British · England</option>
+            </select>
+          </label>
+        </div>
+
+        <label class="notes">
+          <span>Optional context</span>
+          <input id="notes" maxlength="300" placeholder="e.g. school garden, museum visit, home kitchen">
+        </label>
+      </div>
+
+      <div class="upload-card">
+        <div class="section-title">
+          <span class="step">02</span>
+          <div><h2>Add one picture</h2><p>The picture is the evidence. The AI must not invent what is not visible.</p></div>
+        </div>
+
+        <label class="dropzone" id="dropzone">
+          <input id="imageFile" type="file" accept="image/jpeg,image/png,image/webp">
+          <span class="upload-mark">＋</span>
+          <strong>Choose a picture</strong>
+          <small>JPG, PNG or WEBP</small>
+          <img id="preview" alt="Selected learning environment">
+        </label>
+
+        <label class="consent">
+          <input id="faceConsent" type="checkbox">
+          <span><strong>Consent is recorded if a child is identifiable</strong><small>Leave unchecked when the picture contains no identifiable children.</small></span>
+        </label>
+
+        <button class="primary-button" id="analyseButton" type="button" disabled>
+          <span>Analyse through this child's eyes</span>
+        </button>
+        <p class="status" id="status" role="status"></p>
+      </div>
+    </section>
+
+    <section class="results" id="results" aria-live="polite">
+      <div class="results-intro">
+        <span class="eyebrow">IMAGE → EVIDENCE → CURRICULUM</span>
+        <h2 id="resultTitle">What this picture can teach</h2>
+        <p id="imageReading"></p>
+      </div>
+
+      <div class="evidence-strip" id="evidenceStrip"></div>
+
+      <div class="outcome-heading">
+        <div><span class="step">03</span><h2>Curriculum outcomes supported by the image</h2></div>
+        <span id="outcomeCount"></span>
+      </div>
+      <div class="outcome-list" id="outcomeList"></div>
+
+      <div class="limitations" id="limitations"></div>
+    </section>
+  </main>
+
+  <footer>
+    <strong>InOurEyes</strong>
+    <span>One image. One age. Evidence-based learning possibilities.</span>
+  </footer>
+
+  <div class="toast" id="toast"></div>
+  <script src="config.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
