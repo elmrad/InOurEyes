@@ -103,7 +103,7 @@ export const handler=async event=>{
     const age=body.age;
     const stage=stageForAge(age);
     const key=await getOpenAIKey();
-    const prompt=`You are the InfiniteLense visual curriculum engine. Analyse this single photograph through the developmental and educational perspective of a ${age}-year-old learner in ${stage}, using the statutory curriculum for England. Optional context supplied by the user: ${body.notes || "none"}.
+    const prompt=`You are the InOurEyes visual curriculum engine. Analyse this single photograph through the developmental and educational perspective of a ${age}-year-old learner in ${stage}, using the statutory curriculum for England. Optional context supplied by the user: ${body.notes || "none"}.
 
 The photograph is the primary evidence. Inspect it carefully and report only what is genuinely visible. Consider age-appropriate possibilities including, where evidenced: recognising and naming colours; counting visible items; comparing bigger/smaller, more/fewer, longer/shorter or near/far; matching, sorting and classifying; position, direction and proximity; shapes and patterns; addition or subtraction using visible quantities; language and description; living things, materials, forces, place, art and observation. These are possibilities, not a checklist. Do not force a concept that the image does not support.
 
